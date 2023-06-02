@@ -3,6 +3,7 @@ import "./App.css";
 import { Container } from "@mui/material";
 import Header from "./components/Header";
 import Search from "./components/Search";
+import Definition from "./components/Definition";
 
 function App() {
   const [listed, setListed] = useState(false);
@@ -49,12 +50,7 @@ function App() {
           setCurrentFont={setCurrentFont}
         />
         <Search />
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam,
-          doloremque aliquid vitae reiciendis, eius amet fugit, odio dolores
-          doloribus molestias quaerat! Consectetur odio exercitationem
-          necessitatibus suscipit esse iusto modi molestiae.
-        </p>
+        <Definition currentFont={currentFont} setCurrentFont={setCurrentFont} />
       </Container>
     </>
   );

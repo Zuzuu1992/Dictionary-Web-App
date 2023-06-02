@@ -15,7 +15,7 @@ function Search() {
   };
 
   return (
-    <Box>
+    <Box sx={{ marginBottom: "24px" }}>
       <form
         style={{
           outline: isFocused ? "1px solid #a445ed" : "none",
