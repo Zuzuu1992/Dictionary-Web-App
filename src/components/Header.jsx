@@ -1,15 +1,38 @@
-import React from "react";
-import { Box, Stack, Switch, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Stack, Typography } from "@mui/material";
 import Logo from "../../public/assets/images/logo.svg";
 
-function Header() {
+function Header({
+  listed,
+  setListed,
+  handleListed,
+  dark,
+  setDark,
+  changeTheme,
+  selectedFont,
+  setSelectedFont,
+  currentFont,
+  setCurrentFont,
+}) {
+  const fontOptions = [
+    { name: "Sans Serif", fontFamily: "Inter" },
+    { name: "Serif", fontFamily: "Lora" },
+    { name: "Mono", fontFamily: "Inconsolata" },
+  ];
+
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center">
       <Box>
         <img src={Logo} />
       </Box>
       <Stack direction="row" alignItems="center" spacing="12px">
-        <Stack direction="row" alignItems="center" spacing="16px">
+        <Stack
+          onClick={handleListed}
+          direction="row"
+          alignItems="center"
+          spacing="16px"
+          sx={{ position: "relative", cursor: "pointer" }}
+        >
           <Typography
             variant="body1"
             sx={{
@@ -19,9 +42,10 @@ function Header() {
               fontWeight: "700",
             }}
           >
-            Sans Serif
+            {currentFont}
           </Typography>
           <svg
+            onClick={handleListed}
             xmlns="http://www.w3.org/2000/svg"
             width="14"
             height="8"
@@ -34,21 +58,70 @@ function Header() {
               d="m1 1 6 6 6-6"
             />
           </svg>
+          {listed && (
+            <Stack
+              direction="column"
+              sx={{
+                rowGap: "10px",
+                position: "absolute",
+                top: "36px",
+                right: "0",
+                width: "160px",
+                // height: "90px",
+                padding: "24px",
+                backgroundColor: "#FFFFFF",
+                borderRadius: "16px",
+                boxShadow: "0px 5px 30px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              {fontOptions.map((option) => {
+                return (
+                  <Typography
+                    variant="body1"
+                    onClick={() => {
+                      setSelectedFont(option.fontFamily);
+                      setCurrentFont(option.name);
+                    }}
+                    key={option.name}
+                    sx={{
+                      fontFamily:
+                        currentFont === "Sans Serif"
+                          ? "'Inter', sans-serif"
+                          : currentFont === "Serif"
+                          ? "'Lora', serif"
+                          : currentFont === "Mono"
+                          ? "'Inconsolata', monospace"
+                          : null,
+                      fontSize: "14px",
+                      lineHeight: "24px",
+                      color: "#2D2D2D",
+                      fontWeight: "700",
+                      transition: "all 0.3s",
+                      "&:hover": {
+                        color: "#A445ED",
+                      },
+                    }}
+                  >
+                    {option.name}
+                  </Typography>
+                );
+              })}
+            </Stack>
+          )}
         </Stack>
-        <Stack
-          width="1px"
-          height="32px"
-          sx={{ bgcolor: "#E9E9E9" }}
-          //marginLeft: "15px", marginRight: "7px" }}
-        ></Stack>
+        <Stack width="1px" height="32px" sx={{ bgcolor: "#E9E9E9" }}></Stack>
         <Stack direction="row" alignItems="center" spacing="12px">
           <Box
+            onClick={changeTheme}
             sx={{
+              display: "flex",
+              justifyContent: !dark ? "flex-start" : "flex-end",
               width: "40px",
               height: "20px",
               borderRadius: "10px",
-              backgroundColor: "#757575",
+              backgroundColor: !dark ? "#757575" : "#A445ED",
               padding: "3px",
+              cursor: "pointer",
             }}
           >
             <Box
