@@ -4,7 +4,7 @@ import Play from "../../public/assets/images/icon-play.svg";
 import "./DefinitionStyle.css";
 import NewW from "../../public/assets/images/icon-new-window.svg";
 
-function Definition({ currentFont, setCurrentFont }) {
+function Definition({ currentFont, setCurrentFont, dark, setDark }) {
   return (
     <>
       <Stack
@@ -20,7 +20,7 @@ function Definition({ currentFont, setCurrentFont }) {
               fontWeight: "700",
               fontSize: "32px",
               lineHeight: "39px",
-              color: "#2D2D2D",
+              color: !dark ? "#2D2D2D" : "#FFFFFF",
             }}
           >
             memo
@@ -50,7 +50,7 @@ function Definition({ currentFont, setCurrentFont }) {
             fontWeight: "700",
             fontSize: "18px",
             lineHeight: "22px",
-            color: "#2D2D2D",
+            color: !dark ? "#2D2D2D" : "#FFFFFF",
             fontStyle: "italic",
           }}
         >
@@ -59,9 +59,8 @@ function Definition({ currentFont, setCurrentFont }) {
         <Box
           sx={{
             height: "1px",
-            // width: "100%",
             flexGrow: "1",
-            backgroundColor: "#E9E9E9",
+            backgroundColor: !dark ? "#E9E9E9" : "#3A3A3A",
           }}
         ></Box>
       </Stack>
@@ -79,8 +78,7 @@ function Definition({ currentFont, setCurrentFont }) {
         </Typography>
         <Stack
           direction="row"
-          alignItems="center"
-          // justifyContent="space-between"
+          alignItems="flex-start"
           sx={{ columnGap: "20px" }}
         >
           <Box
@@ -90,6 +88,7 @@ function Definition({ currentFont, setCurrentFont }) {
               backgroundColor: "#8F19E8",
               borderRadius: "50%",
               flexShrink: 0,
+              marginTop: "12px",
             }}
           ></Box>
 
@@ -98,12 +97,13 @@ function Definition({ currentFont, setCurrentFont }) {
               fontWeight: "400",
               fontSize: "15px",
               lineHeight: "24px",
-              color: "#2D2D2D",
+              color: !dark ? "#2D2D2D" : "#FFFFFF",
               textAlign: "left",
               alignSelf: "flex-start",
             }}
           >
-            lore ipsum
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
+            perspiciatis officia nam dicta beatae excepturi debitis
           </Typography>
         </Stack>
 
@@ -146,7 +146,7 @@ function Definition({ currentFont, setCurrentFont }) {
             fontWeight: "700",
             fontSize: "18px",
             lineHeight: "22px",
-            color: "#2D2D2D",
+            color: !dark ? "#2D2D2D" : "#FFFFFF",
             fontStyle: "italic",
           }}
         >
@@ -155,9 +155,8 @@ function Definition({ currentFont, setCurrentFont }) {
         <Box
           sx={{
             height: "1px",
-            // width: "100%",
             flexGrow: "1",
-            backgroundColor: "#E9E9E9",
+            backgroundColor: !dark ? "#E9E9E9" : "#3A3A3A",
           }}
         ></Box>
       </Stack>
@@ -176,8 +175,7 @@ function Definition({ currentFont, setCurrentFont }) {
         </Typography>
         <Stack
           direction="row"
-          alignItems="center"
-          // justifyContent="space-between"
+          alignItems="flex-start"
           sx={{ columnGap: "20px" }}
         >
           <Box
@@ -187,6 +185,7 @@ function Definition({ currentFont, setCurrentFont }) {
               backgroundColor: "#8F19E8",
               borderRadius: "50%",
               flexShrink: 0,
+              marginTop: "12px",
             }}
           ></Box>
 
@@ -195,21 +194,21 @@ function Definition({ currentFont, setCurrentFont }) {
               fontWeight: "400",
               fontSize: "15px",
               lineHeight: "24px",
-              color: "#2D2D2D",
+              color: !dark ? "#2D2D2D" : "#FFFFFF",
               textAlign: "left",
               alignSelf: "flex-start",
             }}
           >
-            lore ipsum
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+            provident aliquid dignissimos
           </Typography>
         </Stack>
       </Stack>
       <Box
         sx={{
           height: "1px",
-          // width: "100%",
           flexGrow: "1",
-          backgroundColor: "#E9E9E9",
+          backgroundColor: !dark ? "#E9E9E9" : "#3A3A3A",
           marginTop: "32px",
         }}
       ></Box>
@@ -226,7 +225,10 @@ function Definition({ currentFont, setCurrentFont }) {
           Source
         </Typography>
         <Stack direction="row" spacing="9px">
-          <a href="https://en.wiktionary.org/wiki/word">
+          <a
+            href="https://en.wiktionary.org/wiki/word"
+            style={{ color: !dark ? "#2d2d2d" : "#FFFFFF" }}
+          >
             https://en.wiktionary.org/wiki/word
           </a>
           <img src={NewW} />

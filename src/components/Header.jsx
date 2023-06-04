@@ -38,7 +38,7 @@ function Header({
             sx={{
               fontSize: "14px",
               lineHeight: "24px",
-              color: "#2D2D2D",
+              color: !dark ? "#2D2D2D" : "#FFFFFF",
               fontWeight: "700",
             }}
           >
@@ -69,9 +69,11 @@ function Header({
                 width: "160px",
                 // height: "90px",
                 padding: "24px",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: !dark ? "#FFFFFF" : "#1F1F1F",
                 borderRadius: "16px",
-                boxShadow: "0px 5px 30px rgba(0, 0, 0, 0.1)",
+                boxShadow: !dark
+                  ? "0px 5px 30px rgba(0, 0, 0, 0.1)"
+                  : "0px 5px 30px #A445ED",
               }}
             >
               {fontOptions.map((option) => {
@@ -94,7 +96,7 @@ function Header({
                           : null,
                       fontSize: "14px",
                       lineHeight: "24px",
-                      color: "#2D2D2D",
+                      color: !dark ? "#2D2D2D" : "#FFFFFF",
                       fontWeight: "700",
                       transition: "all 0.3s",
                       "&:hover": {
@@ -141,7 +143,7 @@ function Header({
           >
             <path
               fill="none"
-              stroke="#838383"
+              stroke={!dark ? "#838383" : "#A445ED"}
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="1.5"
