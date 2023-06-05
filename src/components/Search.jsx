@@ -14,8 +14,15 @@ function Search({
   setRedLine,
   empty,
   setEmpty,
+  outcome,
+  setOutcome,
+  modified,
+  setModified,
+  submittedEmpty,
+  setSubmittedEmpty,
 }) {
   const [isFocused, setIsFocused] = useState(false);
+
   const handleFocused = () => {
     setIsFocused(true);
   };
@@ -30,11 +37,12 @@ function Search({
         onSubmit={handleSubmit}
         style={{
           outline:
-            isFocused && !empty
+            isFocused &&
+            (modified
               ? "1px solid #a445ed"
-              : !redLine
+              : submittedEmpty
               ? "1px solid #FF5252"
-              : null,
+              : null),
           backgroundColor: !dark ? "#f4f4f4" : "#1F1F1F",
         }}
       >
@@ -43,13 +51,23 @@ function Search({
           value={searchWord}
           onClick={handleFocused}
           onBlur={handleInputBlur}
-          onChange={(e) => setSearchWord(e.target.value)}
+          onChange={(e) => {
+            setSearchWord(e.target.value);
+            if (redLine && !submittedEmpty) {
+              setRedLine(false);
+            }
+            if (!modified && e.target.value !== "") {
+              setModified(true);
+            } else if (modified && e.target.value === "") {
+              setModified(false);
+            }
+          }}
           placeholder="Search for any word..."
           style={{ color: !dark ? "#2d2d2d" : "#FFFFFF" }}
         />
         <img src={Loop} />
       </form>
-      {redLine ? (
+      {submittedEmpty ? (
         <Typography
           sx={{
             fontWeight: "400",

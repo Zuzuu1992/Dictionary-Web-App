@@ -22,16 +22,29 @@ function App() {
   const [selectedFont, setSelectedFont] = useState("Inter");
   const [searchWord, setSearchWord] = useState("");
   const [empty, setEmpty] = useState("");
+  const [modified, setModified] = useState(false);
+  const [submittedEmpty, setSubmittedEmpty] = useState(false);
   const [redLine, setRedLine] = useState(false);
   const [outcome, setOutcome] = useState(null);
   const [error, setError] = useState(false);
 
-  console.log(searchWord);
+  // console.log(searchWord);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const reset = "";
-    setSearchWord(reset);
+
+    if (searchWord === "") {
+      const message = "Whooops, can't be empty...";
+      setEmpty(message);
+      setRedLine(true);
+      setModified(false);
+      setSubmittedEmpty(true);
+      setTimeout(() => {
+        setSubmittedEmpty(false);
+      }, 3000);
+      console.log(message);
+      return;
+    }
 
     try {
       const response = await axios.get(
@@ -40,15 +53,10 @@ function App() {
       const word = response.data;
       setOutcome(word);
       console.log(word);
-    } catch {
-      if (searchWord === "") {
-        const message = "Whooops, can't be empty...";
-        setEmpty(message);
-        setRedLine(!redLine);
-        console.log(message);
-      }
-      setError(!error);
-      console.log("mteri shemogvesia mefeo");
+      console.log(response.data[0].phonetic);
+    } catch (error) {
+      setError(true);
+      console.log("Error:", error);
     }
   };
 
@@ -74,7 +82,7 @@ function App() {
       >
         <Header
           listed={listed}
-          setListid={setListed}
+          setListed={setListed}
           handleListed={handleListed}
           dark={dark}
           setDark={setDark}
@@ -94,14 +102,23 @@ function App() {
           setRedLine={setRedLine}
           empty={empty}
           setEmpty={setEmpty}
+          outcome={outcome}
+          setOutcome={setOutcome}
+          modified={modified}
+          setModified={setModified}
+          submittedEmpty={submittedEmpty}
+          setSubmittedEmpty={setSubmittedEmpty}
         />
-        <Definition
-          currentFont={currentFont}
-          setCurrentFont={setCurrentFont}
-          dark={dark}
-          setDark={setDark}
-        />
-        {error ? (
+        {outcome ? (
+          <Definition
+            currentFont={currentFont}
+            setCurrentFont={setCurrentFont}
+            dark={dark}
+            setDark={setDark}
+            outcome={outcome}
+            setOutcome={setOutcome}
+          />
+        ) : error ? (
           <Box
             sx={{
               display: "flex",
@@ -133,8 +150,8 @@ function App() {
               }}
             >
               Sorry pal, we couldn't find definitions for the word you were
-              looking for. You can try the search again at later time or head to
-              the web instead.
+              looking for. You can try the search again at a later time or head
+              to the web instead.
             </Typography>
           </Box>
         ) : null}
