@@ -22,7 +22,7 @@ function Definition({
         .filter((audio) => audio != "")
     )
     .flat();
-  console.log(voice);
+  // console.log(voice);
 
   const audioRef = useRef(null);
 
@@ -30,7 +30,7 @@ function Definition({
     audioRef.current.play();
   };
 
-  console.log(outcome);
+  // console.log(outcome);
   return (
     <>
       <Stack

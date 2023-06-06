@@ -53,7 +53,6 @@ function App() {
       const word = response.data;
       setOutcome(word);
       console.log(word);
-      console.log(response.data[0].phonetic);
     } catch (error) {
       setError(true);
       console.log("Error:", error);
