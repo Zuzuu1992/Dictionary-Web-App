@@ -10,25 +10,10 @@ form {
   margin-top: 28px;
 }
 
-input {
-  outline: none;
-  border: none;
-  background-color: transparent;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
-  caret-color: #a445ed;
-  flex-grow: 1;
-}
-
-/* input::placeholder {
-  color: rgba(45, 45, 45, 0.252);
-} */
-
 @media (min-width: 768px) {
   form {
-    padding-top: 21px;
-    padding-bottom: 21px;
+    padding-top: 17px;
+    padding-bottom: 17px;
     margin-top: 50px;
   }
 

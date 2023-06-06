@@ -4,24 +4,13 @@ import Logo from "../../public/assets/images/logo.svg";
 
 function Header({
   listed,
-  setListed,
   handleListed,
   dark,
-  setDark,
   changeTheme,
-  selectedFont,
-  setSelectedFont,
   currentFont,
   setCurrentFont,
-  font,
   setFont,
 }) {
-  const fontOptions = [
-    { name: "Sans Serif", fontFamily: "Inter" },
-    { name: "Serif", fontFamily: "Lora" },
-    { name: "Mono", fontFamily: "Inconsolata" },
-  ];
-
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center">
       <Box>
@@ -38,7 +27,6 @@ function Header({
       <Stack
         direction="row"
         alignItems="center"
-        // spacing="12px"
         sx={{
           columnGap: { xs: "12px", md: "26px" },
         }}
@@ -51,7 +39,6 @@ function Header({
           sx={{
             position: "relative",
             cursor: "pointer",
-            // columnGap: { xs: "16px", md: "26px" },
           }}
         >
           <Typography
@@ -88,7 +75,6 @@ function Header({
                 top: "36px",
                 right: "0",
                 width: "160px",
-                // height: "90px",
                 padding: "24px",
                 backgroundColor: !dark ? "#FFFFFF" : "#1F1F1F",
                 borderRadius: "16px",

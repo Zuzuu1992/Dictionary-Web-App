@@ -1,14 +1,7 @@
 .play-icon {
   width: 48px;
   height: 48px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 14px;
-  line-height: 17px;
-  text-decoration-line: underline;
-  color: #2d2d2d;
+  cursor: pointer;
 }
 
 a:visited {
@@ -19,8 +12,5 @@ a:visited {
   .play-icon {
     width: 75px;
     height: 75px;
-  }
-  a {
-    line-height: 14.69px;
   }
 }

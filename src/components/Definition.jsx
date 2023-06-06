@@ -1,20 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
-import Play from "../../public/assets/images/icon-play.svg";
 import "./DefinitionStyle.css";
 import NewW from "../../public/assets/images/icon-new-window.svg";
 
-function Definition({
-  currentFont,
-  setCurrentFont,
-  dark,
-  setDark,
-  outcome,
-  setOutcome,
-}) {
-  // const { word, phonetics, meanings } = outcome;
-
+function Definition({ dark, outcome }) {
   const voice = outcome
     ?.map((item) =>
       item.phonetics
@@ -22,7 +12,6 @@ function Definition({
         .filter((audio) => audio != "")
     )
     .flat();
-  // console.log(voice);
 
   const audioRef = useRef(null);
 
@@ -30,7 +19,16 @@ function Definition({
     audioRef.current.play();
   };
 
-  // console.log(outcome);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleImageMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleImageMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -59,7 +57,48 @@ function Definition({
           </Typography>
         </Stack>
         <Stack>
-          <img className="play-icon" src={Play} onClick={handleImageClick} />
+          <svg
+            className={`play-icon ${isHovered ? "hovered" : ""}`}
+            onClick={handleImageClick}
+            onMouseEnter={handleImageMouseEnter}
+            onMouseLeave={handleImageMouseLeave}
+            xmlns="http://www.w3.org/2000/svg"
+            width="75"
+            height="75"
+            viewBox="0 0 75 75"
+          >
+            <style>
+              {`
+          .play-icon circle {
+            transition: opacity 0.6s;
+          }
+
+          .play-icon:hover circle {
+            opacity: 1;
+          }
+
+          .play-icon path {
+            transition: fill 0.6s;
+          }
+
+          .play-icon.hovered path {
+            fill: #ffffff;
+          }
+        `}
+            </style>
+            <g fill="#A445ED" fillRule="evenodd">
+              <circle
+                cx="37.5"
+                cy="37.5"
+                r="37.5"
+                opacity={isHovered ? "1" : "0.25"}
+              />
+              <path
+                d="M29 27v21l21-10.5z"
+                fill={isHovered ? "#FFFFFF" : "#A445ED"}
+              />
+            </g>
+          </svg>
           <audio ref={audioRef} src={voice[0]} />
         </Stack>
       </Stack>
@@ -195,6 +234,7 @@ function Definition({
                             fontSize: { xs: "16px", md: "20px" },
                             lineHeight: { xs: "19px", md: "21px" },
                             color: "#A445ED",
+                            cursor: "pointer",
                           }}
                         >
                           {synonym}
@@ -335,6 +375,7 @@ function Definition({
                             fontSize: { xs: "16px", md: "20px" },
                             lineHeight: { xs: "19px", md: "21px" },
                             color: "#A445ED",
+                            cursor: "pointer",
                           }}
                         >
                           {synonym}
@@ -374,13 +415,22 @@ function Definition({
           Source
         </Typography>
         <Stack direction="row" spacing="9px">
-          <a
+          <Typography
+            component="a"
             href={outcome[0].sourceUrls[0]}
             target="_blank"
-            style={{ color: !dark ? "#2d2d2d" : "#FFFFFF" }}
+            sx={{
+              fontSize: "14px",
+              lineHeight: { xs: "17px", md: "14.69px" },
+              color: !dark ? "#2d2d2d" : "#FFFFFF",
+              textDecoration: "none",
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
           >
             {outcome[0].sourceUrls[0]}
-          </a>
+          </Typography>
           <img src={NewW} />
         </Stack>
       </Stack>

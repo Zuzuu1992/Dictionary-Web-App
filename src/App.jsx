@@ -36,14 +36,12 @@ function App() {
     },
     breakpoints: {
       values: {
-        xs: 375, // phone
-        md: 768, // tablets
-        xl: 1440, // small laptop
+        xs: 375,
+        md: 768,
+        xl: 1440,
       },
     },
   });
-
-  // console.log(searchWord);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,9 +78,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
+          transition: "all 0.4s",
           backgroundColor: !dark ? "#FFFFFF" : "#050505",
           width: "100%",
-          height: "100%",
+          minHeight: "100vh",
         }}
       >
         <Container
@@ -96,16 +95,11 @@ function App() {
         >
           <Header
             listed={listed}
-            setListed={setListed}
             handleListed={handleListed}
             dark={dark}
-            setDark={setDark}
             changeTheme={changeTheme}
-            selectedFont={selectedFont}
-            setSelectedFont={setSelectedFont}
             currentFont={currentFont}
             setCurrentFont={setCurrentFont}
-            font={font}
             setFont={setFont}
           />
           <Search
@@ -113,45 +107,33 @@ function App() {
             setSearchWord={setSearchWord}
             handleSubmit={handleSubmit}
             dark={dark}
-            setDark={setDark}
             redLine={redLine}
             setRedLine={setRedLine}
-            empty={empty}
-            setEmpty={setEmpty}
-            outcome={outcome}
-            setOutcome={setOutcome}
             modified={modified}
             setModified={setModified}
             submittedEmpty={submittedEmpty}
-            setSubmittedEmpty={setSubmittedEmpty}
           />
           {outcome ? (
-            <Definition
-              currentFont={currentFont}
-              setCurrentFont={setCurrentFont}
-              dark={dark}
-              setDark={setDark}
-              outcome={outcome}
-              setOutcome={setOutcome}
-            />
+            <Definition dark={dark} outcome={outcome} />
           ) : errorM ? (
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                rowGap: "24px",
+                rowGap: { xs: "24px", md: "26px" },
                 alignItems: "center",
                 justifyContent: "center",
+                marginTop: { xs: "100px", md: "132px" },
               }}
             >
-              <img src={Smile} style={{ marginTop: "132px" }} />
+              <img src={Smile} />
               <Typography
                 sx={{
-                  marginTop: "20px",
+                  marginTop: { xs: "20px", md: "25px" },
                   fontWeight: "700",
-                  fontSize: "20px",
-                  lineHeight: "24px",
-                  color: "#2D2D2D",
+                  fontSize: { xs: "17px", md: "20px" },
+                  lineHeight: { xs: "18px", md: "24px" },
+                  color: !dark ? " #2D2D2D" : "#FFFFFF",
                 }}
               >
                 No Definitions Found
@@ -159,7 +141,7 @@ function App() {
               <Typography
                 sx={{
                   fontWeight: "400",
-                  fontSize: "18px",
+                  fontSize: { xs: "15px", md: "18px" },
                   lineHeight: "24px",
                   color: "#757575",
                   textAlign: "center",
