@@ -32,7 +32,7 @@ function Search({
   };
 
   return (
-    <Box sx={{ marginBottom: "24px" }}>
+    <Box sx={{ marginBottom: { xs: "24px", md: "50px" } }}>
       <form
         onSubmit={handleSubmit}
         style={{
@@ -46,25 +46,34 @@ function Search({
           backgroundColor: !dark ? "#f4f4f4" : "#1F1F1F",
         }}
       >
-        <input
-          type="text"
-          value={searchWord}
-          onClick={handleFocused}
-          onBlur={handleInputBlur}
-          onChange={(e) => {
-            setSearchWord(e.target.value);
-            if (redLine && !submittedEmpty) {
-              setRedLine(false);
-            }
-            if (!modified && e.target.value !== "") {
-              setModified(true);
-            } else if (modified && e.target.value === "") {
-              setModified(false);
-            }
-          }}
-          placeholder="Search for any word..."
-          style={{ color: !dark ? "#2d2d2d" : "#FFFFFF" }}
-        />
+        <Typography>
+          <input
+            type="text"
+            value={searchWord}
+            onClick={handleFocused}
+            onBlur={handleInputBlur}
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+              if (redLine && !submittedEmpty) {
+                setRedLine(false);
+              }
+              if (!modified && e.target.value !== "") {
+                setModified(true);
+              } else if (modified && e.target.value === "") {
+                setModified(false);
+              }
+            }}
+            placeholder="Search for any word..."
+            style={{
+              "::placeholder": {
+                color: !dark
+                  ? "rgba(45, 45, 45, 0.2)"
+                  : "rgba(255, 255, 255, 0.2)",
+              },
+              color: !dark ? "#2d2d2d" : "#FFFFFF",
+            }}
+          />
+        </Typography>
         <img src={Loop} />
       </form>
       {submittedEmpty ? (

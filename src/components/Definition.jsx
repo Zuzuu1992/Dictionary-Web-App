@@ -33,19 +33,14 @@ function Definition({
   // console.log(outcome);
   return (
     <>
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        sx={{ marginBottom: "29px" }}
-      >
-        <Stack direction="column" spacing="8px">
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Stack direction="column" sx={{ rowGap: { xs: "8px", md: "11px" } }}>
           <Typography
             variant="body1"
             sx={{
               fontWeight: "700",
-              fontSize: "32px",
-              lineHeight: "39px",
+              fontSize: { xs: "32px", md: "64px" },
+              lineHeight: { xs: "39px", md: "67px" },
               color: !dark ? "#2D2D2D" : "#FFFFFF",
             }}
           >
@@ -55,8 +50,8 @@ function Definition({
             variant="body1"
             sx={{
               fontWeight: "400",
-              fontSize: "18px",
-              lineHeight: "24px",
+              fontSize: { xs: "18px", md: "24px" },
+              lineHeight: { xs: "24px", md: "29px" },
               color: "#A445ED",
             }}
           >
@@ -70,19 +65,22 @@ function Definition({
       </Stack>
       {outcome.length > 1
         ? outcome.map((each, index) => (
-            <>
+            <Stack key={index}>
               <Stack
                 direction="row"
                 alignItems="center"
                 spacing="16px"
-                sx={{ marginBottom: "31px" }}
+                sx={{
+                  marginBottom: { xs: "31px", md: "44px" },
+                  marginTop: { xs: "29px", md: "42px" },
+                }}
               >
                 {each.meanings[0] && (
                   <Typography
                     sx={{
                       fontWeight: "700",
-                      fontSize: "18px",
-                      lineHeight: "22px",
+                      fontSize: { xs: "18px", md: "24px" },
+                      lineHeight: { xs: "22px", md: "25.18px" },
                       color: !dark ? "#2D2D2D" : "#FFFFFF",
                       fontStyle: "italic",
                     }}
@@ -98,25 +96,21 @@ function Definition({
                   }}
                 ></Box>
               </Stack>
-              <Stack>
+              <Stack sx={{ rowGap: "13px" }}>
                 <Typography
                   sx={{
                     fontWeight: "400",
-                    fontSize: "16px",
-                    lineHeight: "19px",
+                    fontSize: { xs: "16px", md: "20px" },
+                    lineHeight: { xs: "19px", md: "21px" },
                     color: " #757575",
-                    marginBottom: "5px",
+                    marginBottom: { xs: "5px", md: "15px" },
                   }}
                 >
                   Meaning
                 </Typography>
                 {each.meanings[0] &&
                   each.meanings[0].definitions.map((definition, index) => (
-                    <Stack
-                      key={Math.random()}
-                      direction="column"
-                      spacing="13px"
-                    >
+                    <Stack key={index} direction="column" spacing="13px">
                       <Stack
                         direction="row"
                         alignItems="flex-start"
@@ -137,7 +131,7 @@ function Definition({
                           key={index}
                           sx={{
                             fontWeight: "400",
-                            fontSize: "15px",
+                            fontSize: { xs: "15px", md: "18px" },
                             lineHeight: "24px",
                             color: !dark ? "#2D2D2D" : "#FFFFFF",
                             textAlign: "left",
@@ -151,7 +145,7 @@ function Definition({
                         <Typography
                           sx={{
                             fontWeight: "400",
-                            fontSize: "15px",
+                            fontSize: { xs: "15px", md: "18px" },
                             lineHeight: "24px",
                             color: "#757575",
                             paddingLeft: "25px",
@@ -164,24 +158,32 @@ function Definition({
                   ))}
                 <Stack
                   direction="row"
-                  spacing="24px"
                   alignItems="flex-start"
-                  sx={{ marginTop: "17px", marginBottom: "33px" }}
+                  sx={{
+                    columnGap: { xs: "24px", md: "40px" },
+                    marginTop: { xs: "17px", md: "28px" },
+                  }}
                 >
-                  <Typography
-                    sx={{
-                      fontWeight: "400",
-                      fontSize: "16px",
-                      lineHeight: "19px",
-                      color: " #757575",
-                    }}
-                  >
-                    Synonyms
-                  </Typography>
+                  {each.meanings[0].synonyms &&
+                  each.meanings[0].synonyms.length > 0 ? (
+                    <Typography
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: { xs: "16px", md: "20px" },
+                        lineHeight: { xs: "19px", md: "21px" },
+                        color: " #757575",
+                      }}
+                    >
+                      Synonyms
+                    </Typography>
+                  ) : null}
                   <Stack
                     direction="row"
                     flexWrap="wrap"
-                    sx={{ rowGap: "10px", columnGap: "20px" }}
+                    sx={{
+                      rowGap: { xs: "10px", md: "16px" },
+                      columnGap: { xs: "20px", md: "26px" },
+                    }}
                   >
                     {each.meanings[0].synonyms &&
                       each.meanings[0].synonyms.length > 0 &&
@@ -190,8 +192,8 @@ function Definition({
                           key={index}
                           sx={{
                             fontWeight: "700",
-                            fontSize: "16px",
-                            lineHeight: "19px",
+                            fontSize: { xs: "16px", md: "20px" },
+                            lineHeight: { xs: "19px", md: "21px" },
                             color: "#A445ED",
                           }}
                         >
@@ -201,22 +203,25 @@ function Definition({
                   </Stack>
                 </Stack>
               </Stack>
-            </>
+            </Stack>
           ))
         : outcome[0].meanings.map((meaning, index) => (
-            <>
+            <Stack key={index}>
               <Stack
                 direction="row"
                 alignItems="center"
                 spacing="16px"
-                sx={{ marginBottom: "31px" }}
+                sx={{
+                  marginBottom: { xs: "31px", md: "44px" },
+                  marginTop: { xs: "29px", md: "42px" },
+                }}
               >
                 {meaning && (
                   <Typography
                     sx={{
                       fontWeight: "700",
-                      fontSize: "18px",
-                      lineHeight: "22px",
+                      fontSize: { xs: "18px", md: "24px" },
+                      lineHeight: { xs: "22px", md: "25.18px" },
                       color: !dark ? "#2D2D2D" : "#FFFFFF",
                       fontStyle: "italic",
                     }}
@@ -232,25 +237,21 @@ function Definition({
                   }}
                 ></Box>
               </Stack>
-              <Stack>
+              <Stack sx={{ rowGap: "13px" }}>
                 <Typography
                   sx={{
                     fontWeight: "400",
-                    fontSize: "16px",
-                    lineHeight: "19px",
+                    fontSize: { xs: "16px", md: "20px" },
+                    lineHeight: { xs: "19px", md: "21px" },
                     color: " #757575",
-                    marginBottom: "5px",
+                    marginBottom: { xs: "5px", md: "15px" },
                   }}
                 >
                   Meaning
                 </Typography>
                 {meaning &&
                   meaning.definitions.map((definition, index) => (
-                    <Stack
-                      key={Math.random()}
-                      direction="column"
-                      spacing="13px"
-                    >
+                    <Stack key={index} direction="column" spacing="13px">
                       <Stack
                         direction="row"
                         alignItems="flex-start"
@@ -271,7 +272,7 @@ function Definition({
                           key={index}
                           sx={{
                             fontWeight: "400",
-                            fontSize: "15px",
+                            fontSize: { xs: "15px", md: "18px" },
                             lineHeight: "24px",
                             color: !dark ? "#2D2D2D" : "#FFFFFF",
                             textAlign: "left",
@@ -285,7 +286,7 @@ function Definition({
                         <Typography
                           sx={{
                             fontWeight: "400",
-                            fontSize: "15px",
+                            fontSize: { xs: "15px", md: "18px" },
                             lineHeight: "24px",
                             color: "#757575",
                             paddingLeft: "25px",
@@ -298,16 +299,18 @@ function Definition({
                   ))}
                 <Stack
                   direction="row"
-                  spacing="24px"
                   alignItems="flex-start"
-                  sx={{ marginTop: "17px", marginBottom: "33px" }}
+                  sx={{
+                    columnGap: { xs: "24px", md: "40px" },
+                    marginTop: { xs: "17px", md: "28px" },
+                  }}
                 >
                   {meaning.synonyms && meaning.synonyms.length > 0 ? (
                     <Typography
                       sx={{
                         fontWeight: "400",
-                        fontSize: "16px",
-                        lineHeight: "19px",
+                        fontSize: { xs: "16px", md: "20px" },
+                        lineHeight: { xs: "19px", md: "21px" },
                         color: " #757575",
                       }}
                     >
@@ -317,7 +320,10 @@ function Definition({
                   <Stack
                     direction="row"
                     flexWrap="wrap"
-                    sx={{ rowGap: "10px", columnGap: "20px" }}
+                    sx={{
+                      rowGap: { xs: "10px", md: "16px" },
+                      columnGap: { xs: "20px", md: "26px" },
+                    }}
                   >
                     {meaning.synonyms &&
                       meaning.synonyms.length > 0 &&
@@ -326,8 +332,8 @@ function Definition({
                           key={index}
                           sx={{
                             fontWeight: "700",
-                            fontSize: "16px",
-                            lineHeight: "19px",
+                            fontSize: { xs: "16px", md: "20px" },
+                            lineHeight: { xs: "19px", md: "21px" },
                             color: "#A445ED",
                           }}
                         >
@@ -337,22 +343,30 @@ function Definition({
                   </Stack>
                 </Stack>
               </Stack>
-            </>
+            </Stack>
           ))}
       <Box
         sx={{
           height: "1px",
           flexGrow: "1",
           backgroundColor: !dark ? "#E9E9E9" : "#3A3A3A",
-          marginTop: "32px",
+          marginTop: { xs: "32px", md: "39px" },
         }}
       ></Box>
-      <Stack direction="column" spacing="7px" sx={{ marginTop: "24px" }}>
+      <Stack
+        sx={{
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: { xs: "flex-start", md: "center" },
+          rowGap: "7px",
+          columnGap: { md: "25px" },
+          marginTop: { xs: "24px", md: "21px" },
+        }}
+      >
         <Typography
           sx={{
             fontWeight: "400",
             fontSize: "14px",
-            lineHeight: "17px",
+            lineHeight: { xs: "17px", md: "14.69px" },
             color: "#757575",
             textDecorationLine: "underline",
           }}

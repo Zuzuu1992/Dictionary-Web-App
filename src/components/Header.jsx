@@ -13,6 +13,8 @@ function Header({
   setSelectedFont,
   currentFont,
   setCurrentFont,
+  font,
+  setFont,
 }) {
   const fontOptions = [
     { name: "Sans Serif", fontFamily: "Inter" },
@@ -23,20 +25,39 @@ function Header({
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center">
       <Box>
-        <img src={Logo} />
+        <img
+          src={Logo}
+          alt="Logo"
+          style={{
+            "@media (minWidth: 768px)": {
+              width: "32px",
+            },
+          }}
+        />
       </Box>
-      <Stack direction="row" alignItems="center" spacing="12px">
+      <Stack
+        direction="row"
+        alignItems="center"
+        // spacing="12px"
+        sx={{
+          columnGap: { xs: "12px", md: "26px" },
+        }}
+      >
         <Stack
           onClick={handleListed}
           direction="row"
           alignItems="center"
           spacing="16px"
-          sx={{ position: "relative", cursor: "pointer" }}
+          sx={{
+            position: "relative",
+            cursor: "pointer",
+            // columnGap: { xs: "16px", md: "26px" },
+          }}
         >
           <Typography
             variant="body1"
             sx={{
-              fontSize: "14px",
+              fontSize: { xs: "14px", md: "18px" },
               lineHeight: "24px",
               color: !dark ? "#2D2D2D" : "#FFFFFF",
               fontWeight: "700",
@@ -76,43 +97,72 @@ function Header({
                   : "0px 5px 30px #A445ED",
               }}
             >
-              {fontOptions.map((option) => {
-                return (
-                  <Typography
-                    variant="body1"
-                    onClick={() => {
-                      setSelectedFont(option.fontFamily);
-                      setCurrentFont(option.name);
-                    }}
-                    key={option.name}
-                    sx={{
-                      fontFamily:
-                        currentFont === "Sans Serif"
-                          ? "'Inter', sans-serif"
-                          : currentFont === "Serif"
-                          ? "'Lora', serif"
-                          : currentFont === "Mono"
-                          ? "'Inconsolata', monospace"
-                          : null,
-                      fontSize: "14px",
-                      lineHeight: "24px",
-                      color: !dark ? "#2D2D2D" : "#FFFFFF",
-                      fontWeight: "700",
-                      transition: "all 0.3s",
-                      "&:hover": {
-                        color: "#A445ED",
-                      },
-                    }}
-                  >
-                    {option.name}
-                  </Typography>
-                );
-              })}
+              <Typography
+                variant="body1"
+                onClick={() => {
+                  setFont("Inter");
+                  setCurrentFont("Sans Serif");
+                }}
+                sx={{
+                  fontSize: { xs: "14px", md: "18px" },
+                  lineHeight: "24px",
+                  color: !dark ? "#2D2D2D" : "#FFFFFF",
+                  fontWeight: "700",
+                  transition: "all 0.3s",
+                  "&:hover": {
+                    color: "#A445ED",
+                  },
+                }}
+              >
+                Sans Serif
+              </Typography>
+              <Typography
+                variant="body1"
+                onClick={() => {
+                  setFont("Lora");
+                  setCurrentFont("Serif");
+                }}
+                sx={{
+                  fontSize: { xs: "14px", md: "18px" },
+                  lineHeight: "24px",
+                  color: !dark ? "#2D2D2D" : "#FFFFFF",
+                  fontWeight: "700",
+                  transition: "all 0.3s",
+                  "&:hover": {
+                    color: "#A445ED",
+                  },
+                }}
+              >
+                Serif
+              </Typography>
+              <Typography
+                variant="body1"
+                onClick={() => {
+                  setFont("Inconsolata");
+                  setCurrentFont("Mono");
+                }}
+                sx={{
+                  fontSize: { xs: "14px", md: "18px" },
+                  lineHeight: "24px",
+                  color: !dark ? "#2D2D2D" : "#FFFFFF",
+                  fontWeight: "700",
+                  transition: "all 0.3s",
+                  "&:hover": {
+                    color: "#A445ED",
+                  },
+                }}
+              >
+                Mono
+              </Typography>
             </Stack>
           )}
         </Stack>
         <Stack width="1px" height="32px" sx={{ bgcolor: "#E9E9E9" }}></Stack>
-        <Stack direction="row" alignItems="center" spacing="12px">
+        <Stack
+          direction="row"
+          alignItems="center"
+          sx={{ columnGap: { xs: "12px", md: "20px" } }}
+        >
           <Box
             onClick={changeTheme}
             sx={{

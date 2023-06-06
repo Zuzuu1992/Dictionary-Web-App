@@ -14,3 +14,13 @@ a {
 a:visited {
   color: inherit;
 }
+
+@media (min-width: 768px) {
+  .play-icon {
+    width: 75px;
+    height: 75px;
+  }
+  a {
+    line-height: 14.69px;
+  }
+}
