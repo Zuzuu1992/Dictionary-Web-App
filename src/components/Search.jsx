@@ -14,6 +14,7 @@ function Search({
   modified,
   setModified,
   submittedEmpty,
+  outline,
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -26,17 +27,26 @@ function Search({
   };
 
   return (
-    <Box sx={{ marginBottom: { xs: "24px", md: "50px" } }}>
+    <Box
+      sx={{
+        marginBottom: { xs: "24px", md: "50px" },
+      }}
+    >
       <form
         onSubmit={handleSubmit}
         style={{
-          outline:
-            isFocused &&
-            (modified
-              ? "1px solid #a445ed"
-              : submittedEmpty
-              ? "1px solid #FF5252"
-              : null),
+          // outline:
+          //   isFocused &&
+          //   (modified
+          //     ? "1px solid #a445ed"
+          //     : submittedEmpty
+          //     ? "1px solid #FF5252"
+          //     : null),
+          // outline:
+          //   outline && modified && isFocused
+          //     ? "1px solid #FF5252"
+          //     : "1px solid #a445ed",
+          outline: isFocused ? "1px solid #FF5252" : "1px solid #a445ed",
           backgroundColor: !dark ? "#f4f4f4" : "#1F1F1F",
           cursor: "pointer",
         }}
@@ -76,7 +86,7 @@ function Search({
           />
         </FormControl>
 
-        <img src={Loop} />
+        <img src={Loop} onClick={handleSubmit} />
       </form>
       {submittedEmpty ? (
         <Typography

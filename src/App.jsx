@@ -26,6 +26,7 @@ function App() {
   const [modified, setModified] = useState(false);
   const [submittedEmpty, setSubmittedEmpty] = useState(false);
   const [redLine, setRedLine] = useState(false);
+  const [outline, setOutline] = useState(false);
   const [outcome, setOutcome] = useState(null);
   const [errorM, setErrorM] = useState(false);
   const [font, setFont] = useState("Inter");
@@ -51,12 +52,14 @@ function App() {
       setEmpty(message);
       setRedLine(true);
       setModified(false);
+      setOutline(true);
       setSubmittedEmpty(true);
       setTimeout(() => {
         setSubmittedEmpty(false);
       }, 3000);
-      console.log(message);
       return;
+    } else {
+      setOutline(false);
     }
 
     try {
@@ -65,7 +68,6 @@ function App() {
       );
       const word = response.data;
       setOutcome(word);
-      console.log(word);
     } catch (error) {
       setErrorM(true);
       setOutcome(null);
@@ -112,6 +114,7 @@ function App() {
             modified={modified}
             setModified={setModified}
             submittedEmpty={submittedEmpty}
+            outline={outline}
           />
           {outcome ? (
             <Definition dark={dark} outcome={outcome} />
