@@ -115,6 +115,7 @@ function App() {
             setModified={setModified}
             submittedEmpty={submittedEmpty}
             outline={outline}
+            setOutline={setOutline}
           />
           {outcome ? (
             <Definition dark={dark} outcome={outcome} />
