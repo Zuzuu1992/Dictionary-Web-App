@@ -74,8 +74,6 @@ function App() {
     }
   };
 
-  console.log(errorM);
-
   return (
     <ThemeProvider theme={theme}>
       <Box

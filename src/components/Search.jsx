@@ -43,10 +43,6 @@ function Search({
               : submittedEmpty
               ? "1px solid #FF5252"
               : null),
-          // outline:
-          //   outline && modified && isFocused
-          //     ? "1px solid #FF5252"
-          //     : "1px solid #a445ed",
           outline: outline
             ? "1px solid #FF5252"
             : isFocused
